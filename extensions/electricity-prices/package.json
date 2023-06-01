@@ -1,0 +1,55 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "electricity-prices",
+  "title": "Electricity Prices",
+  "description": "List Electricity Prices",
+  "icon": "command-icon.png",
+  "author": "pernielsentikaer",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "index",
+      "title": "List Electricity Prices",
+      "description": "This is just a test",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "priceclass",
+      "description": "Sets the priceclass",
+      "type": "dropdown",
+      "required": true,
+      "title": "Priceclass",
+      "data": [
+        {
+          "title": "DK1 - West",
+          "value": "DK1"
+        },
+        {
+          "title": "DK2 - East",
+          "value": "DK2"
+        }
+      ]
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.52.1",
+    "@raycast/utils": "^1.4.8"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "1.0.5",
+    "@types/node": "18.8.3",
+    "@types/react": "18.0.9",
+    "eslint": "^7.32.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.4.3"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "publish": "npx @raycast/api@latest publish"
+  }
+}
