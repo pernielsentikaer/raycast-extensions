@@ -53,10 +53,11 @@ export default function Command() {
     popToRoot();
   }
 
-  // TODO: How can I get this to work?
-  setTimeout(() => {
+  useEffect(() => {
     setSelectedItem("id6");
-  }, 2000);
+    console.log("here");
+  }, [data]);
+
   console.log(selectedItem);
 
   return (
