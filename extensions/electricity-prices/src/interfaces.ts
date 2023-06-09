@@ -1,5 +1,8 @@
 export interface Entry {
+  [key: string]: number | string | undefined;
+
   DKK_per_kWh: number;
+  NOK_per_kWh?: number;
   EUR_per_kWh: number;
   EXR: number;
   time_start: string;

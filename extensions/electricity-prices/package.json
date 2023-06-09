@@ -8,27 +8,97 @@
   "license": "MIT",
   "commands": [
     {
-      "name": "index",
-      "title": "List Electricity Prices",
+      "name": "dk",
+      "title": "List Electricity Prices in Denmark",
       "description": "This is just a test",
-      "mode": "view"
-    }
-  ],
-  "preferences": [
+      "mode": "view",
+      "preferences": [
+        {
+          "name": "priceclass",
+          "description": "Sets the priceclass",
+          "type": "dropdown",
+          "required": true,
+          "title": "Priceclass",
+          "data": [
+            {
+              "title": "DK1 - West",
+              "value": "DK1"
+            },
+            {
+              "title": "DK2 - East",
+              "value": "DK2"
+            }
+          ]
+        }
+      ]
+    },
     {
-      "name": "priceclass",
-      "description": "Sets the priceclass",
-      "type": "dropdown",
-      "required": true,
-      "title": "Priceclass",
-      "data": [
+      "name": "se",
+      "title": "List Electricity Prices in Sweden",
+      "description": "This is just a test",
+      "mode": "view",
+      "preferences": [
         {
-          "title": "DK1 - West",
-          "value": "DK1"
-        },
+          "name": "priceclass",
+          "description": "Sets the priceclass",
+          "type": "dropdown",
+          "required": true,
+          "title": "Priceclass",
+          "data": [
+            {
+              "title": "SE1",
+              "value": "SE1"
+            },
+            {
+              "title": "SE2",
+              "value": "SE2"
+            },
+            {
+              "title": "SE3",
+              "value": "SE3"
+            },
+            {
+              "title": "SE4",
+              "value": "SE5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "no",
+      "title": "List Electricity Prices in Norway",
+      "description": "This is just a test",
+      "mode": "view",
+      "preferences": [
         {
-          "title": "DK2 - East",
-          "value": "DK2"
+          "name": "priceclass",
+          "description": "Sets the priceclass",
+          "type": "dropdown",
+          "required": true,
+          "title": "Priceclass",
+          "data": [
+            {
+              "title": "NO1 - East",
+              "value": "NO1"
+            },
+            {
+              "title": "NO2 - Sør",
+              "value": "NO2"
+            },
+            {
+              "title": "NO3 - Mid",
+              "value": "NO3"
+            },
+            {
+              "title": "NO4 - North",
+              "value": "NO4"
+            },
+            {
+              "title": "NO5 - West",
+              "value": "NO5"
+            }
+          ]
         }
       ]
     }
