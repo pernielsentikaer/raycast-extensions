@@ -11,6 +11,7 @@ export type NextDNSError = {
 export type DomainListItem = {
   id: string;
   active: boolean;
+  type: string;
 };
 
 export type Profile = {
@@ -21,3 +22,7 @@ export type Profile = {
 };
 
 export type Mutate = MutatePromise<{ result: DomainListItem[]; profileName: string; }>;
+
+export interface DomainSubmitValues {
+  domain: string;
+}

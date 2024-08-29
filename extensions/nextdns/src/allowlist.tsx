@@ -1,18 +1,18 @@
-import { List } from "@raycast/api";
-import { getList } from "./libs/api";
-import { PREFERENCES } from "./libs/constants";
-import { EmptyView } from "./components/empty-view";
-import { ListItem } from "./components/list-item";
+import { getDomains } from "./libs/api";
 import { ErrorView } from "./components/error-view";
+import { DomainListItem } from "./types/nextdns";
+import { removeItem } from "./libs/utils";
+import { DomainList } from "./libs/domainList";
 
 export default function Command() {
-  const { data, isLoading, error, mutate } = getList({ type: "allow" });
+  const type = "allow";
+  const { data, isLoading, error, mutate } = getDomains({ type });
 
   if (error) {
     return <ErrorView />;
   }
 
-  return (
+return (
     <List
       isLoading={isLoading}
       searchBarPlaceholder={`Search allowlist of ${data?.profileName ?? "..."} (${PREFERENCES.nextdns_profile_id})`}

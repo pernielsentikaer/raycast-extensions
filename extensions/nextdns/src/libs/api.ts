@@ -35,7 +35,7 @@ async function makeRequest(endpoint: string, method: string = "GET", body?: Body
   return response.json();
 }
 
-export function getList(props: { type: string }) {
+export function getDomains(props: { type: string }) {
   const { type } = props;
   const endpoint = `/profiles/${PREFERENCES.nextdns_profile_id}/${type}list`;
 
@@ -43,7 +43,9 @@ export function getList(props: { type: string }) {
     headers: headers,
     async parseResponse(response) {
       const json = await response.json();
-      return { result: json.data as DomainListItem[], profileName: await getProfileName() };
+      const results = json.data.map((item: DomainListItem) => ({ ...item, type: props.type }));
+
+      return { result: results, profileName: await getProfileName() };
     },
     initialData: { result: [], profileName: "" }
   });
@@ -62,13 +64,13 @@ export async function addSite(props: { domain: string, type: string }) {
   } as BodyInit);
 }
 
-export async function removeSite() {}
+export async function removeDomain() {}
 
-export async function toggleSite(props: { id: string; type: string; active: boolean }) {
-  const { id, type, active } = props;
-  const idHex = Buffer.from(id).toString("hex");
+export async function toggleDomain(props: { element: DomainListItem }) {
+  const { element } = props;
+  const idHex = Buffer.from(element.id).toString("hex");
 
-  await makeRequest(`/profiles/${PREFERENCES.nextdns_profile_id}/${type}list/hex:${idHex}`, "PATCH", {
-    active,
+  await makeRequest(`/profiles/${PREFERENCES.nextdns_profile_id}/${element.type}list/hex:${idHex}`, "PATCH", {
+    active: !element.active,
   } as BodyInit);
 }
