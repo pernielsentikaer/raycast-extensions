@@ -1,12 +1,11 @@
 import { Action, ActionPanel, Color, Icon, List, showToast, Toast } from "@raycast/api";
 import { toggleSite } from "../libs/api";
-import { MutatePromise } from "@raycast/utils";
-import { DomainListItem } from "../types/nextdns";
+import { Mutate } from "../types/nextdns";
 import AddSite from "./add-site";
 
 //TODO: Implement optimistic update
 //TODO: Ensure naming, site or domain?
-export function ListItem(props: { id: string; active: boolean; type: string, mutate: MutatePromise<{ result: DomainListItem[]; profileName: string; }> }) {
+export function ListItem(props: { id: string; active: boolean; type: string, mutate: Mutate}) {
   const { id, active, type, mutate } = props;
 
   async function toggle(newStatus: boolean) {

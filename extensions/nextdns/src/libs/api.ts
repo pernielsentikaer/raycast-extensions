@@ -1,6 +1,6 @@
 import { useFetch } from "@raycast/utils";
 import { NEXTDNS_API_BASE_URL, PREFERENCES } from "./constants";
-import { DomainListItem, Profile } from "../types/nextdns";
+import { DomainListItem, NextDNSError, Profile } from "../types/nextdns";
 import fetch, { BodyInit } from "node-fetch";
 
 const headers = {
@@ -27,7 +27,9 @@ async function makeRequest(endpoint: string, method: string = "GET", body?: Body
 
   // Handle methods that might not return data
   if (method === "PATCH" || method === "DELETE" || method === "PUT" || method === "POST") {
-    return response.status;
+    if (response.status===204) return response.status;
+    const result = await response.json() as { errors: NextDNSError[] };
+    throw new Error(result.errors[0].code);
   }
 
   return response.json();

@@ -1,10 +1,10 @@
 import { Action, ActionPanel, Form, Icon, showToast, Toast, useNavigation } from "@raycast/api";
-import { MutatePromise, useForm } from "@raycast/utils";
+import { useForm } from "@raycast/utils";
 import isValidDomain from "is-valid-domain";
-import { DomainListItem } from "../types/nextdns";
+import { Mutate } from "../types/nextdns";
 import { addSite } from "../libs/api";
 
-export default function AddSite(props: { type: string, mutate: MutatePromise<{ result: DomainListItem[]; profileName: string; }> }) {
+export default function AddSite(props: { type: string, mutate: Mutate }) {
     const { pop } = useNavigation();
     const { type, mutate } = props;
     const description = type==="allow" ? "Allowing a domain will automatically allow all its subdomains. Allowing takes precedence over everything else, including security features." : "Denying a domain will automatically deny all its subdomains.";
@@ -28,7 +28,6 @@ export default function AddSite(props: { type: string, mutate: MutatePromise<{ r
             toast.message = values.domain;
             pop();
             } catch (error) {
-                console.log(error)
             toast.style = Toast.Style.Failure;
             toast.title = "Could not Add Domain";
             }

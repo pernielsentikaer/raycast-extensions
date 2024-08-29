@@ -1,3 +1,5 @@
+import { MutatePromise } from "@raycast/utils";
+
 export type NextDNSError = {
   code: string;
   detail?: string;
@@ -17,3 +19,5 @@ export type Profile = {
     name: string;
   };
 };
+
+export type Mutate = MutatePromise<{ result: DomainListItem[]; profileName: string; }>;
