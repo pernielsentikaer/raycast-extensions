@@ -6,7 +6,7 @@ import { ListItem } from "./components/list-item";
 import { ErrorView } from "./components/error-view";
 
 export default function Command() {
-  const { data, isLoading, error } = getList({ type: "deny" });
+  const { data, isLoading, error, mutate } = getList({ type: "deny" });
 
   if (error) {
     return <ErrorView />;
@@ -15,11 +15,11 @@ export default function Command() {
   return (
     <List
       isLoading={isLoading}
-      searchBarPlaceholder={`Search denylist of ${data?.profileName} (${PREFERENCES.nextdns_profile_id})`}
+      searchBarPlaceholder={`Search denylist of ${data?.profileName ?? "..."} (${PREFERENCES.nextdns_profile_id})`}
     >
       {data && (
         <>
-          {data.result?.map((element) => <ListItem id={element.id} active={element.active} type="deny" />)}
+          {data.result?.map((element) => <ListItem key={element.id} id={element.id} active={element.active} type="deny" mutate={mutate} />)}
 
           {Object.keys(data).length === 0 && (
             <EmptyView title="No domains in denylist" icon={{ source: "no_view.png" }} />

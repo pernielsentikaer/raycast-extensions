@@ -26,7 +26,7 @@ async function makeRequest(endpoint: string, method: string = "GET", body?: Body
   }
 
   // Handle methods that might not return data
-  if (method === "PATCH" || method === "DELETE" || method === "PUT") {
+  if (method === "PATCH" || method === "DELETE" || method === "PUT" || method === "POST") {
     return response.status;
   }
 
@@ -43,6 +43,7 @@ export function getList(props: { type: string }) {
       const json = await response.json();
       return { result: json.data as DomainListItem[], profileName: await getProfileName() };
     },
+    initialData: { result: [], profileName: "" }
   });
 }
 
@@ -51,7 +52,13 @@ export async function getProfileName() {
   return json?.data?.name || "Unknown";
 }
 
-export async function addSite() {}
+export async function addSite(props: { domain: string, type: string }) {
+  const { domain, type } = props;
+  await makeRequest(`/profiles/${PREFERENCES.nextdns_profile_id}/${type}list`, "POST", {
+    id: domain,
+    active: true,
+  } as BodyInit);
+}
 
 export async function removeSite() {}
 
