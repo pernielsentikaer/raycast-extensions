@@ -23,6 +23,13 @@ export type Profile = {
 
 export type Mutate = MutatePromise<{ result: DomainListItem[]; profileName: string; }>;
 
+export interface DomainListProps {
+  data: { result: DomainListItem[]; profileName: string };
+  type: "allow" | "deny";
+  isLoading: boolean;
+  mutate: Mutate;
+}
+
 export interface DomainSubmitValues {
   domain: string;
 }
