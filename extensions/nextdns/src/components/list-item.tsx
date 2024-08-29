@@ -1,7 +1,7 @@
 import { Action, ActionPanel, Color, Icon, List, showToast, Toast } from "@raycast/api";
 import { toggleDomain } from "../libs/api";
 import { DomainListItem, Mutate } from "../types/nextdns";
-import AddDomain from "./add-domain";
+import AddDomain from "./actions/add-domain";
 
 //TODO: Optimize optimistic update
 //TODO: Ensure naming, site or domain?
