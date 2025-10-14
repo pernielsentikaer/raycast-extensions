@@ -1,6 +1,6 @@
 # TablePlus Changelog
 
-## [Chore: just a test] - {PR_MERGE_DATE}
+## [Chore: just a test] - 2025-02-21
 
 ## [✨ AI Enhancements] - 2025-02-21
 
