@@ -70,7 +70,6 @@ export function parseCSV(csvContent: string): Score[] {
     seconds: record["Seconds"],
     keysf: record["keysf"],
     keymi: record["keymi"],
-    bpm: record["BPM"] || record["bpm"],
   }));
 }
 

@@ -45,7 +45,6 @@ export default function Command() {
             title={score.title}
             subtitle={score.composers}
             accessories={[
-              ...(score.bpm ? [{ tag: `${score.bpm} BPM`, icon: Icon.Heartbeat, tooltip: "Tempo" }] : []),
               ...(score.tags ? [{ tag: score.tags, icon: Icon.Tag, tooltip: "Tags" }] : []),
               ...(score.genres ? [{ tag: score.genres, icon: Icon.Music, tooltip: "Genres" }] : []),
             ]}

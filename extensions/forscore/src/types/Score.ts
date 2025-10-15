@@ -14,5 +14,4 @@ export interface Score {
   seconds?: string;
   keysf?: string;
   keymi?: string;
-  bpm?: string;
 }
