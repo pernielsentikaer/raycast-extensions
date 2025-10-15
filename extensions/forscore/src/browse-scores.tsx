@@ -1,6 +1,7 @@
-import { List, Action, ActionPanel, Icon, Keyboard, openExtensionPreferences } from "@raycast/api";
+import { List, Action, ActionPanel, Icon, Keyboard } from "@raycast/api";
 import { useScores } from "./hooks/hooks";
 import { openScore } from "./utils/utils";
+import { PreferencesAction } from "./components/PreferencesAction";
 
 export default function Command() {
   const { data: scores, isLoading, error } = useScores();
@@ -14,7 +15,7 @@ export default function Command() {
           description={error.message}
           actions={
             <ActionPanel>
-              <Action title="Open Extension Preferences" icon={Icon.Gear} onAction={openExtensionPreferences} />
+              <PreferencesAction />
             </ActionPanel>
           }
         />
@@ -43,12 +44,7 @@ export default function Command() {
                 shortcut={Keyboard.Shortcut.Common.Copy}
               />
               <ActionPanel.Section title="Settings">
-                <Action
-                  title="Open Extension Preferences"
-                  icon={Icon.Gear}
-                  onAction={openExtensionPreferences}
-                  shortcut={{ modifiers: ["cmd", "shift"], key: "," }}
-                />
+                <PreferencesAction />
               </ActionPanel.Section>
             </ActionPanel>
           }

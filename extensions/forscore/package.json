@@ -6,8 +6,7 @@
   "icon": "icon.png",
   "author": "pernielsentikaer",
   "platforms": [
-    "macOS",
-    "Windows"
+    "macOS"
   ],
   "categories": [
     "Media"
