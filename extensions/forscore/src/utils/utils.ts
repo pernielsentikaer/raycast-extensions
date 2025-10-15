@@ -1,5 +1,6 @@
 import { getApplications, showToast, Toast, open } from "@raycast/api";
-import { existsSync, readFileSync } from "fs";
+import { existsSync } from "fs";
+import { parse } from "csv-parse/sync";
 import { FORSCORE_BUNDLE_ID, FORSCORE_WEBSITE } from "../constants/constants";
 import { Score } from "../types/Score";
 
@@ -21,18 +22,7 @@ export function validateForScoreCSV(path: string): string | null {
     return "File must be a CSV file";
   }
 
-  // Try to read and validate CSV structure
-  try {
-    const content = readFileSync(path, "utf-8");
-    const firstLine = content.split("\n")[0];
-    if (!firstLine.includes("Arkivnavn") && !firstLine.includes("Titel")) {
-      return "Invalid forScore CSV format";
-    }
-  } catch (err) {
-    return `Cannot read file: ${err}`;
-  }
-
-  return null; // Valid file
+  return null;
 }
 
 export async function checkForScoreInstallation(): Promise<boolean> {
@@ -55,42 +45,33 @@ export async function checkForScoreInstallation(): Promise<boolean> {
 
   return isInstalled;
 }
+
 export function parseCSV(csvContent: string): Score[] {
-  const lines = csvContent.split("\n");
-  if (lines.length < 2) return [];
+  const records = parse(csvContent, {
+    columns: true,
+    skip_empty_lines: true,
+    trim: true,
+    relax_column_count: true, // Allow records with varying column counts
+  }) as Record<string, string>[];
 
-  const scores: Score[] = [];
-
-  // Skip header row
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-
-    const values = line.split(",");
-    if (values.length < 2) continue;
-
-    const score: Score = {
-      filename: values[0]?.trim() || "",
-      title: values[1]?.trim() || values[0]?.replace(".pdf", "").trim() || "",
-      startPage: values[2]?.trim(),
-      endPage: values[3]?.trim(),
-      composers: values[4]?.trim(),
-      genres: values[5]?.trim(),
-      tags: values[6]?.trim(),
-      labels: values[7]?.trim(),
-      id: values[8]?.trim(),
-      rating: values[9]?.trim(),
-      difficulty: values[10]?.trim(),
-      minutes: values[11]?.trim(),
-      seconds: values[12]?.trim(),
-      keysf: values[13]?.trim(),
-      keymi: values[14]?.trim(),
-    };
-
-    scores.push(score);
-  }
-
-  return scores;
+  return records.map((record) => ({
+    filename: record["Arkivnavn"] || "",
+    title: record["Titel"] || record["Arkivnavn"]?.replace(".pdf", "") || "",
+    startPage: record["Startside (bogmærke)"],
+    endPage: record["Slutside (bogmærke)"],
+    composers: record["Komponister"],
+    genres: record["Genrer"],
+    tags: record["Tags"],
+    labels: record["Etiketter"],
+    id: record["Id"],
+    rating: record["Vurdering"],
+    difficulty: record["Sværhedsgrad"],
+    minutes: record["Minutter"],
+    seconds: record["Seconds"],
+    keysf: record["keysf"],
+    keymi: record["keymi"],
+    bpm: record["BPM"] || record["bpm"],
+  }));
 }
 
 export function openScore(score: Score) {
