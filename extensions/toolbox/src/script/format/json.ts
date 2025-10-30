@@ -1,7 +1,7 @@
 import { Script } from "../type";
 import vkbeautify from "vkbeautify";
 
-export const foramtJson: Script = {
+export const formatJson: Script = {
   info: {
     title: "Format JSON",
     desc: "Format JSON documents",

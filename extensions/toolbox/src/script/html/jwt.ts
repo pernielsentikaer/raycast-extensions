@@ -27,7 +27,7 @@ export const jwt: Script = {
         signature: signature,
       };
 
-      // Prettyprint the JSOM
+      // Prettyprint the JSON
       return JSON.stringify(fullJson, null, 2);
     } catch {
       throw Error("Error while parsing JSON");

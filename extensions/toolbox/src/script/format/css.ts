@@ -1,7 +1,7 @@
 import { Script } from "../type";
 import vkbeautify from "vkbeautify";
 
-export const foramtCss: Script = {
+export const formatCss: Script = {
   info: {
     title: "Format CSS",
     desc: "Format CSS stylesheets",

@@ -1,7 +1,7 @@
 import { Script } from "../type";
 import vkbeautify from "vkbeautify";
 
-export const foramtXml: Script = {
+export const formatXml: Script = {
   info: {
     title: "Format XML/HTML",
     desc: "Format XML/HTML documents",
