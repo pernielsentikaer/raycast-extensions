@@ -1,5 +1,9 @@
 # ToolBox Changelog
 
+## [Update] - {PR_MERGE_DATE}
+
+- Added support for Windows
+
 ## [Format SQL script fix] - 2023-12-21
 
 - Fixed Format SQL script

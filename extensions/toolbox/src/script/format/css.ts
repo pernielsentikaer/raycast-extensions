@@ -12,7 +12,7 @@ export const foramtCss: Script = {
   run(input) {
     try {
       return vkbeautify.css(input, 2);
-    } catch (error) {
+    } catch {
       throw Error("Invalid CSS");
     }
   },
@@ -28,7 +28,7 @@ export const minifyCss: Script = {
   run(input) {
     try {
       return vkbeautify.cssmin(input);
-    } catch (error) {
+    } catch {
       throw Error("Invalid CSS");
     }
   },

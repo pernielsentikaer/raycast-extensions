@@ -12,7 +12,7 @@ export const foramtXml: Script = {
   run(input) {
     try {
       return vkbeautify.xml(input);
-    } catch (error) {
+    } catch {
       throw Error("Invalid XML/HTML");
     }
   },
@@ -28,7 +28,7 @@ export const minifyXml: Script = {
   run(input) {
     try {
       return vkbeautify.xmlmin(input);
-    } catch (error) {
+    } catch {
       throw Error("Invalid XML/HTML");
     }
   },

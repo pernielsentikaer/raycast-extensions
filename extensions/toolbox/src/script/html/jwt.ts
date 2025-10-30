@@ -29,7 +29,7 @@ export const jwt: Script = {
 
       // Prettyprint the JSOM
       return JSON.stringify(fullJson, null, 2);
-    } catch (err) {
+    } catch {
       throw Error("Error while parsing JSON");
     }
   },
