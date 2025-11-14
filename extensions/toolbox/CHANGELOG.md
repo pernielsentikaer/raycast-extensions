@@ -1,6 +1,6 @@
 # ToolBox Changelog
 
-## [Update] - {PR_MERGE_DATE}
+## [Update] - 2025-11-14
 
 - Added support for Windows
 
