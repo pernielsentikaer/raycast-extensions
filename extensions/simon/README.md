@@ -1,3 +1,3 @@
 # Simon
 
-Play a game of Simon.
+Play a game of Simon!
